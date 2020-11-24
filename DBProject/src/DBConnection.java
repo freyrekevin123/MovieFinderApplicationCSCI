@@ -11,6 +11,12 @@ import java.util.Properties;
 //************************************************************************************
 import java.util.concurrent.Executor;
 
+//************************************************************************************
+//DBConnection.java		Created By: Larry Gaitan-Rodriguez	Date: 11/24/2020
+//
+//Used to connect to the database. Makes use of ReadDBProperties.java
+//************************************************************************************
+
 public class DBConnection {
 	
 	//Assigns the properties values to global variables
