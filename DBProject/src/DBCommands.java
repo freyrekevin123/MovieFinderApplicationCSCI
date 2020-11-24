@@ -51,4 +51,48 @@ public class DBCommands {
 		nukeMovieCast();
 		nukeMovieName();
 	}
+	
+	
+	//The following methods are for creating the required tables for the program.
+	public static void createMovieCastTable() 
+	{
+		Connection connect = DBConnection.connectToDB();
+		try
+		{
+			String movieCastTableCreationSQL = "CREATE TABLE movie_cast (movieID INTEGER, castID INTEGER, cname CHAR(255), PRIMARY KEY (movieID, castID),"
+					+ "FOREIGN KEY (MovieID) REFERENCES movie_name_score(MovieID));";
+			PreparedStatement prepStatement2 = connect.prepareStatement(movieCastTableCreationSQL);
+			prepStatement2.executeUpdate(movieCastTableCreationSQL);
+		}
+		catch(SQLException e)
+		{
+			System.out.println("Critical error in creating move_cast table. Table may already exist.");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void createMovieNameTable() 
+	{
+		Connection connect = DBConnection.connectToDB();
+		try
+		{
+			String movieNameScoreTableCreationSQL = "CREATE TABLE movie_name_score(movieID Integer, mname CHAR(255), mscore Integer, PRIMARY KEY (MovieID));";
+			PreparedStatement prepStatement = connect.prepareStatement(movieNameScoreTableCreationSQL);
+			prepStatement.executeUpdate();
+			System.out.println("Created the movie_name_score table.");
+
+		}
+		catch(SQLException e)
+		{
+			System.out.println("Critical error in creating move_name_score table. Table may already exist.");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void createBothTables()
+	{
+		createMovieNameTable();
+		createMovieCastTable();
+	}
+	
 }
