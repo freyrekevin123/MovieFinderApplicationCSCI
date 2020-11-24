@@ -13,16 +13,16 @@ import java.util.Scanner;
 //************************************************************************************
 
 public class DataScanner {
-	private static File file;
+	private File file;
 	public DataScanner(File file) {
 		this.file = file;
 	}
-	public static void ScanMovieCastAndUpload()
+	public void scanMovieCastAndUpload()
 	{
 		Connection connect = DBConnection.connectToDB();
 
 		try {
-			Scanner castReader = new Scanner(new FileInputStream("movie-cast.txt"));
+			Scanner castReader = new Scanner(new FileInputStream(file));
 			
 			
 			int castCounter = 0;
@@ -43,6 +43,7 @@ public class DataScanner {
 				postNM.executeUpdate();
 				castCounter++;
 			}
+			
 			castReader.close();
 			System.out.println("inserted "+castCounter+" lines into movie_cast");
 			
@@ -55,13 +56,13 @@ public class DataScanner {
 		}
 
 	}
-	public static void ScanNameAndUpload()
+	public void ScanNameAndUpload()
 	{
 		//Will now make use of the scanner class to take in data from file
 		try {
 			Connection connect = DBConnection.connectToDB();
 
-			Scanner movieNameReader = new Scanner(new FileInputStream("file"));
+			Scanner movieNameReader = new Scanner(new FileInputStream(file));
 
 			
 			//Goes thru the whole file to process the data and upload it
@@ -97,6 +98,16 @@ public class DataScanner {
 			System.out.println("SQL Query went wrong!?");
 			SQLE.printStackTrace();
 		}
+	}
+	
+	public void setFileUpload(File file) 
+	{
+		this.file = file;
+	}
+	
+	public File getFileUpload()
+	{
+		return file;
 	}
 
 }
