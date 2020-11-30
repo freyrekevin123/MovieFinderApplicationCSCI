@@ -60,7 +60,7 @@ public class DBCommands {
 		try
 		{
 			String movieCastTableCreationSQL = "CREATE TABLE movie_cast (movieID INTEGER, castID INTEGER, cname CHAR(255), PRIMARY KEY (movieID, castID),"
-					+ "FOREIGN KEY (MovieID) REFERENCES movie_name_score(MovieID));";
+					+ "FOREIGN KEY (movieID) REFERENCES movie_name_score(movieID));";
 			PreparedStatement prepStatement2 = connect.prepareStatement(movieCastTableCreationSQL);
 			prepStatement2.executeUpdate(movieCastTableCreationSQL);
 		}
@@ -76,7 +76,7 @@ public class DBCommands {
 		Connection connect = DBConnection.connectToDB();
 		try
 		{
-			String movieNameScoreTableCreationSQL = "CREATE TABLE movie_name_score(movieID Integer, mname CHAR(255), mscore Integer, PRIMARY KEY (MovieID));";
+			String movieNameScoreTableCreationSQL = "CREATE TABLE movie_name_score(movieID Integer, mname CHAR(255), mscore Integer, PRIMARY KEY (movieID));";
 			PreparedStatement prepStatement = connect.prepareStatement(movieNameScoreTableCreationSQL);
 			prepStatement.executeUpdate();
 			System.out.println("Created the movie_name_score table.");
