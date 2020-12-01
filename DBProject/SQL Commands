@@ -1,0 +1,33 @@
+/* Discuss procedure necessary for allowing a user to input an actor name to find his/her movie with the highest score. */
+
+SELECT mname, MAX(mscore)
+FROM movie_name_score, movie_cast
+WHERE cname = "Ewan McGregor" AND movie_name_score.movieID = movie_cast.movieID; #Ewan McGregor is an example, user input would be inserted
+
+/*Discuss procedure necessary for allowing a user to input a keyword to find movies with such keyword in their titles. NOTE: It would be 
+interesting to allow multiple keywords as an input from a user and find movies with such keywords, but it is not required.*/
+
+SELECT mname
+FROM movie_name_score
+WHERE mname LIKE "%Star%"; #Again, Star here is just an example. User input should be inserted in its place
+
+/*Discuss procedure necessary for finding ten most popular actors based on the scores of their movies.
+
+SELECT cname
+FROM movie_cast, movie_name_score #I havent got this command to work properly
+GROUP BY cname
+ORDER BY AVG(mscore) DESC
+LIMIT 4;
+
+/*Discuss procedure necessary for finding a group of actors that have performed in the most movies together 
+(i.e., which actors have starred in the largest number of movies together).*/
+
+#Work in progress
+
+/*Discuss procedure necessary for finding one more insight from the given data that is not already covered in (5) to (8).
+I wrote a command that will return all the actors from a movie requested by the user (I tried to keep it simple)*/
+
+SELECT cname
+FROM movie_name_score, movie_cast
+WHERE mname = "Star Wars: Episode III - Revenge of the Sith 3D" AND movie_name_score.movieID = movie_cast.movieID;
+
